@@ -1,0 +1,36 @@
+data:
+  csv_path: "data/online_retail_II.csv"
+  date_column: "InvoiceDate"
+  quantity_column: "Quantity"
+  price_column: "Price"
+  invoice_column: "Invoice"
+  customer_id_column: "CustomerID"
+  stockcode_column: "StockCode"
+  country_column: "Country"
+
+outputs:
+  artifacts_dir: "artifacts"
+  reports_dir: "reports"
+
+mba:
+  min_support: 0.005
+  min_confidence: 0.25
+  use_fpgrowth: true
+  top_rules: 50
+
+segmentation:
+  kmeans_k: 5
+  dbscan_eps: 0.5
+  dbscan_min_samples: 15
+
+forecasting:
+  test_days: 60
+  lags: [1, 2, 3, 7, 14, 28]
+  sarima_order: [1, 1, 1]
+  sarima_seasonal_order: [1, 1, 1, 7]
+  xgb:
+    n_estimators: 400
+    max_depth: 6
+    learning_rate: 0.05
+    subsample: 0.9
+    colsample_bytree: 0.9
